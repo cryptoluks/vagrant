@@ -1,0 +1,24 @@
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * 6'
+
+env:
+  PACKER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  PKR_VAR_access_token: ${{ secrets.VAGRANT_ACCESS_TOKEN }}
+  
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: macos-12
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v3
+      - name: Get next minor version
+        run: echo "PKR_VAR_next_minor_version=$(bash scripts/get_next_minor_version.sh windows)" >> $GITHUB_ENV
+      - name: Build
+        run: |
+          cd windows && ./build.sh pkrvars/17763.107.101029-1455.rs5_release_svc_refresh_CLIENT_LTSC_EVAL_x64FRE_en-us.pkrvars.hcl
