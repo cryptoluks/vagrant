@@ -18,7 +18,7 @@ jobs:
       - name: Clone repository
         uses: actions/checkout@v3
       - name: Get next minor version
-        run: echo "PKR_VAR_next_minor_version=$(bash scripts/get_next_minor_version.sh kali)" >> $GITHUB_ENV
+        run: echo "PKR_VAR_next_minor_version=$(bash scripts/get_next_minor_version.sh kali-distrobox)" >> $GITHUB_ENV
       - name: Build
         run: |
-          cd kali && packer build config.pkr.hcl
+          cd kali && packer build config-distrobox.pkr.hcl

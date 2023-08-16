@@ -24,7 +24,7 @@ cp /boot/efi/EFI/kali/grubx64.efi /boot/efi/EFI/boot/bootx64.efi
 
 # Prevent password prompt for color management settings on login
 mkdir -p /etc/polkit-1/localauthority.conf.d
-tee /etc/polkit-1/localauthority.conf.d/02-allow-colord.conf <<"EOF"
+tee /etc/polkit-1/localauthority.conf.d/02-allow-colord.conf <<EOF
 polkit.addRule(function (action, subject) {
     if ((action.id == "org.freedesktop.color-manager.create-device" ||
         action.id == "org.freedesktop.color-manager.create-profile" ||
@@ -40,14 +40,14 @@ EOF
 
 # GUI Autologin
 mkdir -p /etc/lightdm/lightdm.conf.d
-tee /etc/lightdm/lightdm.conf.d/50-autologin.conf <<"EOF"
+tee /etc/lightdm/lightdm.conf.d/50-autologin.conf <<EOF
 [SeatDefaults]
 autologin-user=vagrant
 EOF
 
 # Add firefox policies
 mkdir -p /usr/lib/firefox-esr/distribution
-tee /usr/lib/firefox-esr/distribution/policies.json <<"EOF"
+tee /usr/lib/firefox-esr/distribution/policies.json <<EOF
 {
   "policies": {
     "DisableFeedbackCommands": true,
@@ -120,6 +120,6 @@ tee /usr/lib/firefox-esr/distribution/policies.json <<"EOF"
 EOF
 
 # Disable xfce power management and do not lock screen if system is going to sleep
-su vagrant <<"EOF"
+su vagrant <<EOF
 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus xfconf-query -c xfce4-power-manager --create -p /xfce4-power-manager/presentation-mode -t bool -s true
 EOF

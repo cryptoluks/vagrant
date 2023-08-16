@@ -16,10 +16,10 @@ URL="https://app.vagrantup.com/cryptoluks/boxes/${BOX_NAME}"
 # Use curl to download the JSON file and pipe it into jq to extract the version
 CURRENT_VERSION=$(curl -s "$URL" | jq -r '.versions[0].version')
 
-# Check if the curl request was successful and box exists
+# Return 0 if box current version returns null, maybe box does not exist
 if [[ -z "$CURRENT_VERSION" ]] || [[ "$CURRENT_VERSION" == "null" ]]; then
-    echo "Error fetching version information or no box found with the name '${BOX_NAME}' from ${URL}"
-    exit 1
+    echo 0
+    exit 0
 fi
 
 # Get the current date in the format YYYY-MM-DD
