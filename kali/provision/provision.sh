@@ -94,7 +94,7 @@ tee /usr/lib/firefox-esr/distribution/policies.json <<EOF
         "installation_mode": "normal_installed"
       },
       "{3c078156-979c-498b-8990-85f7987dd929}": {
-        "install_url": "https://addons.mozilla.org/firefox/downloads/file/3994928",
+        "install_url": "https://addons.mozilla.org/firefox/downloads/file/4170134",
         "installation_mode": "normal_installed"
       },
       "{60f82f00-9ad5-4de5-b31c-b16a47c51558}": {
