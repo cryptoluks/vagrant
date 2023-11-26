@@ -36,7 +36,6 @@ source "virtualbox-iso" "packer-windows-base" {
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
     ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
-    ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
     ["storagectl", "{{ .Name }}", "--name", "IDE Controller", "--remove"],
   ]
   vm_name = var.iso_name
