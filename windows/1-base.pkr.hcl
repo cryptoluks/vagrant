@@ -5,7 +5,7 @@ variable "iso_url" {}
 
 source "virtualbox-iso" "packer-windows-base" {
   boot_command = ["<up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait>"]
-  boot_wait    = "3s"
+  boot_wait    = "6s"
   cd_files = [
     "cd/${var.iso_name}/*",
     "cd/all/*",
