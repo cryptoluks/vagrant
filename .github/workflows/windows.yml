@@ -24,8 +24,8 @@ jobs:
           TAILSCALE_AUTH_KEY: ${{ secrets.TAILSCALE_AUTH_KEY }}
         run: |
           echo "Authenticating with Tailscale..."
-          sudo tailscaled
-          tailscale up --authkey $TAILSCALE_AUTH_KEY --ssh
+          sudo brew services start tailscale
+          sudo tailscale up --authkey $TAILSCALE_AUTH_KEY --ssh
       - name: Get next minor version
         run: echo "PKR_VAR_next_minor_version=$(bash scripts/get_next_minor_version.sh windows)" >> $GITHUB_ENV
       - name: Build
