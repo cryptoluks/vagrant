@@ -5,7 +5,7 @@ variable "iso_url" {}
 
 source "virtualbox-iso" "packer-windows-base" {
   boot_command = ["<up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait>"]
-  boot_wait    = "6s"
+  boot_wait    = "3s"
   cd_files = [
     "cd/${var.iso_name}/*",
     "cd/all/*",
@@ -51,8 +51,8 @@ build {
     "source.virtualbox-iso.packer-windows-base",
   ]
 
-  provisioner "powershell" {
-    script = "provision/disable-services.ps1"
-  }
+  #provisioner "powershell" {
+  #  script = "provision/disable-services.ps1"
+  #}
 
 }
