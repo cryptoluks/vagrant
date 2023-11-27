@@ -17,15 +17,15 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
-      - name: Install Tailscale
-        run: brew install tailscale
-      - name: Authenticate and Connect Tailscale
-        env:
-          TAILSCALE_AUTH_KEY: ${{ secrets.TAILSCALE_AUTH_KEY }}
-        run: |
-          echo "Authenticating with Tailscale..."
-          sudo brew services start tailscale
-          sudo tailscale up --authkey $TAILSCALE_AUTH_KEY --ssh
+      #- name: Install Tailscale
+      #  run: brew install tailscale
+      #- name: Authenticate and Connect Tailscale
+      #  env:
+      #    TAILSCALE_AUTH_KEY: ${{ secrets.TAILSCALE_AUTH_KEY }}
+      #  run: |
+      #    echo "Authenticating with Tailscale..."
+      #    sudo brew services start tailscale
+      #    sudo tailscale up --authkey $TAILSCALE_AUTH_KEY --ssh
       - name: Get next minor version
         run: echo "PKR_VAR_next_minor_version=$(bash scripts/get_next_minor_version.sh windows)" >> $GITHUB_ENV
       - name: Build
