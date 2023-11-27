@@ -112,10 +112,7 @@ Write-Host 'Setting the host file permissions...'
 &"$openSshHome\FixHostFilePermissions.ps1" -Confirm:$false
 
 Write-Host 'Configuring sshd and ssh-agent services...'
-# make sure the service startup type is delayed-auto.
-# WARN do not be tempted to change the service startup type from
-#      delayed-auto to auto, as the later proved to be unreliable.
-$result = sc.exe config sshd start= delayed-auto
+$result = sc.exe config sshd start= auto
 if ($result -ne '[SC] ChangeServiceConfig SUCCESS') {
     throw "sc.exe config sshd failed with $result"
 }
