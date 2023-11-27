@@ -51,8 +51,8 @@ build {
     "source.virtualbox-iso.packer-windows-base",
   ]
 
-  #provisioner "powershell" {
-  #  script = "provision/disable-services.ps1"
-  #}
+  provisioner "powershell" {
+    script = "provision/disable-services.ps1"
+  }
 
 }
