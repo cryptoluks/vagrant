@@ -15,7 +15,7 @@ trap {
 # Install chocolatey and packages
 Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 choco feature enable -n=allowGlobalConfirmation
-choco install --no-progress --failonstderr firefox git notepadplusplus imageglass python 7zip vscode sysinternals wireshark winscp microsoft-teams
+choco install --no-progress --failonstderr firefox git notepadplusplus imageglass 7zip sysinternals winscp
 
 # Install Guest Additions
 Write-Host 'Importing the Oracle certificate as a Trusted Publisher...'
