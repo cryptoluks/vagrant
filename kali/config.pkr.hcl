@@ -3,22 +3,22 @@ variable "next_minor_version" {}
 
 variable "iso_checksum" {
   type    = string
-  default = "sha256:7790115f6df268d93924a9bf079021b6b8f0c28d6255476fd102efd387dfbbf6"
+  default = "sha256:a308f7743a75d862561c35b3bfd8b401ebd447cc90c0aa7335c51889b99169c9"
 }
 
 variable "iso_name" {
   type    = string
-  default = "kali-linux-2023.2a-installer-netinst-amd64"
+  default = "kali-linux-2023.4-installer-netinst-amd64"
 }
 
 variable "iso_filename" {
   type    = string
-  default = "kali-linux-2023.2a-installer-netinst-amd64.iso"
+  default = "kali-linux-2023.4-installer-netinst-amd64.iso"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://cdimage.kali.org/kali-2023.2/kali-linux-2023.2a-installer-netinst-amd64.iso"
+  default = "https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-installer-netinst-amd64.iso"
 }
 
 source "virtualbox-iso" "kali" {
