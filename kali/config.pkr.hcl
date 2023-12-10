@@ -1,12 +1,3 @@
-packer {
-  required_plugins {
-    virtualbox = {
-      version = "~> 1"
-      source  = "github.com/hashicorp/virtualbox"
-    }
-  }
-}
-
 variable "access_token" {}
 variable "next_minor_version" {}
 
@@ -28,6 +19,15 @@ variable "iso_filename" {
 variable "iso_url" {
   type    = string
   default = "https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-installer-netinst-amd64.iso"
+}
+
+packer {
+  required_plugins {
+    virtualbox = {
+      version = "~> 1"
+      source  = "github.com/hashicorp/virtualbox"
+    }
+  }
 }
 
 source "virtualbox-iso" "kali" {
