@@ -71,7 +71,7 @@ source "virtualbox-iso" "kali" {
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
     ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
     ["storagectl", "{{ .Name }}", "--name", "IDE Controller", "--remove"],
-    ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
+    //["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
   ]
   vboxmanage_post = [
     ["modifyvm", "{{ .Name }}", "--vrdeport", "default"],
