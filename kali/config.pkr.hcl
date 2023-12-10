@@ -1,3 +1,12 @@
+packer {
+  required_plugins {
+    virtualbox = {
+      version = "~> 1"
+      source  = "github.com/hashicorp/virtualbox"
+    }
+  }
+}
+
 variable "access_token" {}
 variable "next_minor_version" {}
 
@@ -56,13 +65,13 @@ source "virtualbox-iso" "kali" {
   output_directory         = "output/${var.iso_name}"
   shutdown_command         = "echo 'packer' | sudo -S shutdown -P now"
   ssh_password             = "vagrant"
-  ssh_timeout              = "4h"
+  ssh_timeout              = "1h"
   ssh_username             = "vagrant"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
     ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
     ["storagectl", "{{ .Name }}", "--name", "IDE Controller", "--remove"],
-    #["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
+    ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
   ]
   vboxmanage_post = [
     ["modifyvm", "{{ .Name }}", "--vrdeport", "default"],
