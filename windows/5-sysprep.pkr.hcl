@@ -13,7 +13,7 @@ source "virtualbox-vm" "packer-windows-sysprep" {
   guest_additions_mode      = "disable"
   headless                  = true
   keep_registered           = true
-  shutdown_command          = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
+  shutdown_command          = "C:\\Windows\\system32\\Sysprep\\sysprep.exe /generalize /oobe /shutdown /unattend:E:\\unattend.xml"
   skip_export               = false
   ssh_password              = "vagrant"
   output_directory          = "output/${var.iso_name}/sysprep"
@@ -32,15 +32,6 @@ build {
   sources = [
     "source.virtualbox-vm.packer-windows-sysprep"
   ]
-
-  provisioner "powershell" {
-    inline = [
-      "$unattendPath = (Get-PSDrive -PSProvider FileSystem | ForEach-Object { Get-ChildItem $_.Root -Filter unattend.xml -File -ErrorAction SilentlyContinue | Select-Object -First 1 }).FullName",
-      "if (-not $unattendPath) { throw 'unattend.xml not found on any drive' }",
-      "& \"$env:SystemRoot\\System32\\Sysprep\\Sysprep.exe\" /oobe /quiet /quit /generalize /unattend:$unattendPath",
-      "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select-Object -ExpandProperty ImageState; if($imageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState; Start-Sleep -Seconds 10 } else { break } }",
-    ]
-  }
 
   post-processors {
 
