@@ -1,13 +1,9 @@
 Vagrant.configure("2") do |config|
-  config.vm.boot_timeout = 600
+  config.vm.box = "cryptoluks/windows"
+  config.vm.synced_folder ".", "/vagrant"
   config.vm.provider "virtualbox" do |vb|
-    vb.gui = true
-    vb.memory = "4096"
-    vb.cpus = 2
+    vb.customize ["modifyvm", :id, "--audio", "pulse", "--audiocontroller", "hda"]
+    vb.customize ["modifyvm", :id, "--audioin", "on"]
+    vb.customize ["modifyvm", :id, "--audioout", "on"]
   end
-  config.vm.synced_folder ".", "/vagrant", disabled: true
-  config.vm.guest = :windows
-  config.vm.communicator = "winssh"
-  config.winssh.username = "vagrant"
-  config.winssh.password = "vagrant"
 end
