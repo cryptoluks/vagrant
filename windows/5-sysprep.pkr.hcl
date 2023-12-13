@@ -35,8 +35,10 @@ build {
 
   provisioner "powershell" {
     inline = [
-      "& $env:SystemRoot\\System32\\Sysprep\\Sysprep.exe /oobe /quiet /quit /mode:vm /unattend:E:\\unattend.xml",
-      "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select ImageState; if($imageState.ImageState -ne 'IMAGE_STATE_COMPLETE') { Write-Output $imageState.ImageState; Start-Sleep -s 10  } else { break } }",
+      "$unattendPath = (Get-PSDrive -PSProvider FileSystem | ForEach-Object { Get-ChildItem $_.Root -Filter unattend.xml -File -ErrorAction SilentlyContinue | Select-Object -First 1 }).FullName",
+      "if (-not $unattendPath) { throw 'unattend.xml not found on any drive' }",
+      "& \"$env:SystemRoot\\System32\\Sysprep\\Sysprep.exe\" /oobe /quiet /quit /generalize /unattend:$unattendPath",
+      "while($true) { $imageState = Get-ItemProperty HKLM:\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Setup\\State | Select-Object -ExpandProperty ImageState; if($imageState -ne 'IMAGE_STATE_GENERALIZE_RESEAL_TO_OOBE') { Write-Output $imageState; Start-Sleep -Seconds 10 } else { break } }",
     ]
   }
 
