@@ -2,6 +2,15 @@ variable "access_token" {}
 variable "iso_name" {}
 variable "next_minor_version" {}
 
+packer {
+  required_plugins {
+    virtualbox = {
+      version = "~> 1"
+      source  = "github.com/hashicorp/virtualbox"
+    }
+  }
+}
+
 source "virtualbox-vm" "packer-windows-sysprep" {
   cd_files = [
     "cd/${var.iso_name}/*",
@@ -13,7 +22,7 @@ source "virtualbox-vm" "packer-windows-sysprep" {
   guest_additions_mode      = "disable"
   headless                  = true
   keep_registered           = true
-  shutdown_command          = "C:\\Windows\\system32\\Sysprep\\sysprep.exe /generalize /oobe /shutdown /unattend:E:\\unattend.xml"
+  shutdown_command          = "C:\\Windows\\system32\\Sysprep\\sysprep.exe /generalize /oobe /mode:vm /shutdown /unattend:E:\\unattend.xml"
   skip_export               = false
   ssh_password              = "vagrant"
   output_directory          = "output/${var.iso_name}/sysprep"

@@ -3,6 +3,15 @@ variable "iso_filename" {}
 variable "iso_name" {}
 variable "iso_url" {}
 
+packer {
+  required_plugins {
+    virtualbox = {
+      version = "~> 1"
+      source  = "github.com/hashicorp/virtualbox"
+    }
+  }
+}
+
 source "virtualbox-iso" "packer-windows-base" {
   boot_command = ["<up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait><up><wait>"]
   boot_wait    = "3s"

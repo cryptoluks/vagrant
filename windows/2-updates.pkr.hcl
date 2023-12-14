@@ -6,6 +6,10 @@ packer {
       version = "0.14.3"
       source  = "github.com/rgl/windows-update"
     }
+    virtualbox = {
+      version = "~> 1"
+      source  = "github.com/hashicorp/virtualbox"
+    }
   }
 }
 
