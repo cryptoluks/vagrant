@@ -40,7 +40,7 @@ source "virtualbox-iso" "packer-windows-base" {
   shutdown_command          = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
   skip_export               = true
   ssh_password              = "vagrant"
-  ssh_timeout               = "1h"
+  ssh_timeout               = "30m"
   ssh_username              = "vagrant"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
