@@ -14,8 +14,8 @@ source "virtualbox-vm" "packer-windows-packages" {
   force_delete_snapshot     = true
   guest_additions_interface = "sata"
   guest_additions_mode      = "attach"
-  guest_additions_url       = "https://download.virtualbox.org/virtualbox/7.0.8/VBoxGuestAdditions_7.0.8.iso"
-  guest_additions_sha256    = "8d73e2361afbf696e6128ffa5e96d9f6a78ff32cb2cb54c727a5be7992be0b31"
+  guest_additions_url       = "https://download.virtualbox.org/virtualbox/7.0.12/VBoxGuestAdditions_7.0.12.iso"
+  guest_additions_sha256    = "b37f6aabe5a32e8b96ccca01f37fb49f4fd06674f1b29bc8fe0f423ead37b917"
   headless                  = true
   keep_registered           = true
   shutdown_command          = "shutdown /s /t 0 /f /d p:4:1 /c \"Packer Shutdown\""
