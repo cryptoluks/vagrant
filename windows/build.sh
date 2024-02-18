@@ -25,9 +25,9 @@ delete_boxfile() {
 
 # Function to delete VM
 delete_vm() {
-    VM_INFO=$(vboxmanage list vms | grep "$VM_NAME")
+    VM_INFO=$(VBoxManage list vms | grep "$VM_NAME")
     if [ -n "$VM_INFO" ]; then
-        vboxmanage unregistervm --delete "$VM_NAME" > /dev/null 2>&1 && echo "VM deleted" || echo "Failed to delete VM"
+        VBoxManage unregistervm --delete "$VM_NAME" > /dev/null 2>&1 && echo "VM deleted" || echo "Failed to delete VM"
     else
         echo "VM not found"
     fi
