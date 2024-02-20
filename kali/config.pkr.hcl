@@ -61,7 +61,6 @@ source "virtualbox-iso" "kali" {
   hard_drive_nonrotational = true
   headless                 = true
   http_directory           = "http"
-  vrdp_bind_address = "0.0.0.0"
   iso_checksum             = var.iso_checksum
   iso_interface            = "sata"
   iso_target_path          = "iso/${var.iso_name}"
@@ -74,9 +73,6 @@ source "virtualbox-iso" "kali" {
   ssh_username             = "vagrant"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
-    ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
-    ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
-    ["storagectl", "{{ .Name }}", "--name", "IDE Controller", "--remove"],
   ]
   vboxmanage_post = [
     ["modifyvm", "{{ .Name }}", "--vrdeport", "default"],
