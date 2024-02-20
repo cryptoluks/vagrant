@@ -61,6 +61,7 @@ source "virtualbox-iso" "kali" {
   hard_drive_nonrotational = true
   headless                 = true
   http_directory           = "http"
+  vrdp_bind_address = "0.0.0.0"
   iso_checksum             = var.iso_checksum
   iso_interface            = "sata"
   iso_target_path          = "iso/${var.iso_name}"
