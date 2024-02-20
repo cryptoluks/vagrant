@@ -43,6 +43,7 @@ source "virtualbox-iso" "packer-windows-base" {
   ssh_timeout               = "30m"
   ssh_username              = "vagrant"
   vboxmanage = [
+    ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
     ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
     ["storagectl", "{{ .Name }}", "--name", "IDE Controller", "--remove"],
