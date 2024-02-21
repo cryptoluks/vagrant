@@ -50,27 +50,28 @@ source "virtualbox-iso" "kali" {
     "initrd /install.amd/initrd.gz<enter>",
     "boot<enter>"
   ]
-  cpus                     = 2
-  disk_size                = 61440
-  firmware                 = "efi"
-  gfx_controller           = "vmsvga"
-  gfx_vram_size            = 128
-  guest_additions_mode     = "disable"
-  guest_os_type            = "Debian_64"
-  hard_drive_interface     = "sata"
-  hard_drive_nonrotational = true
-  headless                 = true
-  http_directory           = "http"
-  iso_checksum             = var.iso_checksum
-  iso_interface            = "sata"
-  iso_target_path          = "iso/${var.iso_name}"
-  iso_url                  = var.iso_url
-  memory                   = 4096
-  output_directory         = "output/${var.iso_name}"
-  shutdown_command         = "echo 'packer' | sudo -S shutdown -P now"
-  ssh_password             = "vagrant"
-  ssh_timeout              = "2h"
-  ssh_username             = "vagrant"
+  cpus                      = 2
+  disk_size                 = 61440
+  firmware                  = "efi"
+  gfx_controller            = "vmsvga"
+  gfx_vram_size             = 128
+  guest_additions_interface = "sata"
+  guest_additions_mode      = "disable"
+  guest_os_type             = "Debian_64"
+  hard_drive_interface      = "sata"
+  hard_drive_nonrotational  = true
+  headless                  = true
+  http_directory            = "http"
+  iso_checksum              = var.iso_checksum
+  iso_interface             = "sata"
+  iso_target_path           = "iso/${var.iso_name}"
+  iso_url                   = var.iso_url
+  memory                    = 4096
+  output_directory          = "output/${var.iso_name}"
+  shutdown_command          = "echo 'packer' | sudo -S shutdown -P now"
+  ssh_password              = "vagrant"
+  ssh_timeout               = "2h"
+  ssh_username              = "vagrant"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--nat-localhostreachable1", "on"],
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
