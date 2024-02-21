@@ -95,14 +95,7 @@ build {
     execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
     scripts = [
       "provision/provision.sh",
-    ]
-  }
-
-  provisioner "shell" {
-    execute_command = "echo 'vagrant' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    inline = [
-      "dd if=/dev/zero of=/ZEROFILL bs=1M || true", "rm /ZEROFILL", "sync",
-      "dd if=/dev/zero of=/boot/efi/ZEROFILL bs=1M || true", "rm /boot/efi/ZEROFILL", "sync",
+      "provision/minimize.sh",
     ]
   }
 
