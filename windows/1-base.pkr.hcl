@@ -5,9 +5,17 @@ variable "iso_url" {}
 
 packer {
   required_plugins {
+    windows-update = {
+      version = "0.15.0"
+      source  = "github.com/rgl/windows-update"
+    }
     virtualbox = {
-      version = "~> 1"
+      version = ">= 1.0.5"
       source  = "github.com/hashicorp/virtualbox"
+    }
+    vagrant = {
+      version = ">= 1.1.0"
+      source  = "github.com/hashicorp/vagrant"
     }
   }
 }

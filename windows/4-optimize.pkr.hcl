@@ -1,14 +1,5 @@
 variable "iso_name" {}
 
-packer {
-  required_plugins {
-    virtualbox = {
-      version = "~> 1"
-      source  = "github.com/hashicorp/virtualbox"
-    }
-  }
-}
-
 source "virtualbox-vm" "packer-windows-optimize" {
   attach_snapshot = "packages"
   cd_files = [

@@ -2,15 +2,6 @@ variable "access_token" {}
 variable "iso_name" {}
 variable "next_minor_version" {}
 
-packer {
-  required_plugins {
-    virtualbox = {
-      version = "~> 1"
-      source  = "github.com/hashicorp/virtualbox"
-    }
-  }
-}
-
 source "virtualbox-vm" "packer-windows-sysprep" {
   cd_files = [
     "cd/${var.iso_name}/*",

@@ -1,18 +1,5 @@
 variable "iso_name" {}
 
-packer {
-  required_plugins {
-    windows-update = {
-      version = "0.14.3"
-      source  = "github.com/rgl/windows-update"
-    }
-    virtualbox = {
-      version = "~> 1"
-      source  = "github.com/hashicorp/virtualbox"
-    }
-  }
-}
-
 source "virtualbox-vm" "packer-windows-updates" {
   attach_snapshot       = "base"
   force_delete_snapshot = true
