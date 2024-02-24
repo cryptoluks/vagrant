@@ -21,4 +21,4 @@ jobs:
         run: echo "PKR_VAR_next_minor_version=$(bash scripts/get_next_minor_version.sh kali)" >> $GITHUB_ENV
       - name: Build
         run: |
-          cd kali && packer init config.pkr.hcl && packer build config.pkr.hcl
+          cd kali && ./build.sh pkrvars/kali-linux-2023.4-installer-netinst-amd64.pkrvars.hcl

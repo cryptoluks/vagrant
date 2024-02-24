@@ -1,25 +1,9 @@
 variable "access_token" {}
+variable "iso_checksum" {}
+variable "iso_filename" {}
+variable "iso_name" {}
+variable "iso_url" {}
 variable "next_minor_version" {}
-
-variable "iso_checksum" {
-  type    = string
-  default = "sha256:a308f7743a75d862561c35b3bfd8b401ebd447cc90c0aa7335c51889b99169c9"
-}
-
-variable "iso_name" {
-  type    = string
-  default = "kali-linux-2023.4-installer-netinst-amd64"
-}
-
-variable "iso_filename" {
-  type    = string
-  default = "kali-linux-2023.4-installer-netinst-amd64.iso"
-}
-
-variable "iso_url" {
-  type    = string
-  default = "https://cdimage.kali.org/kali-2023.4/kali-linux-2023.4-installer-netinst-amd64.iso"
-}
 
 packer {
   required_plugins {
@@ -64,7 +48,7 @@ source "virtualbox-iso" "kali" {
   http_directory            = "http"
   iso_checksum              = var.iso_checksum
   iso_interface             = "sata"
-  iso_target_path           = "iso/${var.iso_name}"
+  iso_target_path           = "iso/${var.iso_filename}"
   iso_url                   = var.iso_url
   memory                    = 4096
   output_directory          = "output/${var.iso_name}"

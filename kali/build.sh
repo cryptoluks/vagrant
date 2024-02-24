@@ -30,15 +30,8 @@ delete_vm() {
 
 build_vm() {
     set -oeux pipefail
-
-    declare -a steps=("base" "updates" "packages" "optimize" "sysprep")
-
-    for i in "${!steps[@]}"; do
-        step_number=$(($i + 1))
-        step_name=${steps[$i]}
-        packer init -upgrade "${step_number}-${step_name}.pkr.hcl"
-        packer build -var-file="${VARFILE}" -force "${step_number}-${step_name}.pkr.hcl"
-    done
+    packer init -upgrade config.pkr.hcl
+    packer build -var-file="${VARFILE}" -force config.pkr.hcl
 }
 
 delete_boxfile
